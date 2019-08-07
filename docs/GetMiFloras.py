@@ -5,7 +5,7 @@ import datetime
 from gattlib import DiscoveryService
 from miflora.miflora_poller import MiFloraPoller, \
     MI_CONDUCTIVITY, MI_MOISTURE, MI_LIGHT, MI_TEMPERATURE, MI_BATTERY
-from miflora.backends.gatttool import GatttoolBackend
+from btlewrap import GatttoolBackend
 
 def getPlant(macAdr):
     poller = MiFloraPoller(macAdr, GatttoolBackend)

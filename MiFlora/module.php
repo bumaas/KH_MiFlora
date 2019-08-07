@@ -35,13 +35,13 @@ class MiFlora extends IPSModule
         // --------------------------------------------------------
         if (!IPS_VariableProfileExists('MiFlora_LUX')) {
             IPS_CreateVariableProfile('MiFlora_LUX', 2);
-            IPS_SetVariableProfileText('MiFlora_LUX', '', ' Lx');
+            IPS_SetVariableProfileText('MiFlora_LUX', '', ' lx');
             IPS_SetVariableProfileValues('MiFlora_LUX', 0, 10000, 100);
         }
 
         if (!IPS_VariableProfileExists('MiFlora_EC')) {
             IPS_CreateVariableProfile('MiFlora_EC', 2);
-            IPS_SetVariableProfileText('MiFlora_EC', '', ' µs/cm');
+            IPS_SetVariableProfileText('MiFlora_EC', '', ' µS/cm');
             IPS_SetVariableProfileValues('MiFlora_EC', 0, 1000, 100);
         }
 
@@ -96,7 +96,7 @@ class MiFlora extends IPSModule
 
 
         // Verzeichnis für Standortbilder
-        if (!mkdir(
+        if (!@mkdir(
                 $concurrentDirectory =
                     IPS_GetKernelDir() . 'webfront' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'MiFlora' . DIRECTORY_SEPARATOR
             )
@@ -276,22 +276,22 @@ class MiFlora extends IPSModule
                     // Einmalig zu erzeugende Variablen (Stellschrauben User)
                     // -------------------------------------------------------------
                     if (@IPS_GetVariableIDByName('Bodenfeuchtigkeit MAX', $catID) === false) {
-                        $varID = $this->CreateVariable('Bodenfeuchtigkeit MAX', 2, 50, $uuid . '_moistMax', $catID, 'MiFlora_Humidity');
+                        $varID = $this->CreateVariable('Bodenfeuchtigkeit MAX', 2, 60, $uuid . '_moistMax', $catID, 'MiFlora_Humidity');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
                     if (@IPS_GetVariableIDByName('Bodenfeuchtigkeit MIN', $catID) === false) {
-                        $varID = $this->CreateVariable('Bodenfeuchtigkeit MIN', 2, 20, $uuid . '_moistMin', $catID, 'MiFlora_Humidity');
+                        $varID = $this->CreateVariable('Bodenfeuchtigkeit MIN', 2, 15, $uuid . '_moistMin', $catID, 'MiFlora_Humidity');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
                     if (@IPS_GetVariableIDByName('Bodenleitfähigkeit MAX', $catID) === false) {
-                        $varID = $this->CreateVariable('Bodenleitfähigkeit MAX', 2, 100, $uuid . '_ecMax', $catID, 'MiFlora_EC');
+                        $varID = $this->CreateVariable('Bodenleitfähigkeit MAX', 2, 2000, $uuid . '_ecMax', $catID, 'MiFlora_EC');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
                     if (@IPS_GetVariableIDByName('Bodenleitfähigkeit MIN', $catID) === false) {
-                        $varID = $this->CreateVariable('Bodenleitfähigkeit MIN', 2, 30, $uuid . '_ecMin', $catID, 'MiFlora_EC');
+                        $varID = $this->CreateVariable('Bodenleitfähigkeit MIN', 2, 350, $uuid . '_ecMin', $catID, 'MiFlora_EC');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
@@ -308,12 +308,12 @@ class MiFlora extends IPSModule
                     }
 
                     if (@IPS_GetVariableIDByName('Beleuchtungsstärke MAX', $catID) === false) {
-                        $varID = $this->CreateVariable('Beleuchtungsstärke MAX', 2, 2500, $uuid . '_LUXMax', $catID, 'MiFlora_LUX');
+                        $varID = $this->CreateVariable('Beleuchtungsstärke MAX', 2, 10000, $uuid . '_LUXMax', $catID, 'MiFlora_LUX');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
                     if (@IPS_GetVariableIDByName('Beleuchtungsstärke MIN', $catID) === false) {
-                        $varID = $this->CreateVariable('Beleuchtungsstärke MIN', 2, 1200, $uuid . '_LUXMin', $catID, 'MiFlora_LUX');
+                        $varID = $this->CreateVariable('Beleuchtungsstärke MIN', 2, 1000, $uuid . '_LUXMin', $catID, 'MiFlora_LUX');
                         IPS_SetVariableCustomAction($varID, $updateScriptID);
                         $logVarIDs[] = $varID;
                     }
