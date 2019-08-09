@@ -16,7 +16,7 @@ def getPlant(macAdr):
 
     fw = poller.firmware_version()
     name = poller.name()
-    temp = poller.parameter_value("temperature")
+    temp = poller.parameter_value(MI_TEMPERATURE)
     moist = poller.parameter_value(MI_MOISTURE)
     light = poller.parameter_value(MI_LIGHT)
     cond = poller.parameter_value(MI_CONDUCTIVITY)
@@ -24,16 +24,19 @@ def getPlant(macAdr):
 
     print(timeStr + " Mac="+macAdr+" Name="+name+" Fw="+fw+" Temp={:.2f} Moist={:d} Light={:d} Cond={:d} Bat={:d}".format(temp, moist, light, cond, battery))
 
-    return;
-
+    return
 
 
 service = DiscoveryService("hci0")
-devices = service.discover(2)
+devices = service.discover(8)
 
 for address, name in devices.items():
     if name == "Flower care" or name == "Flower mate":
-        getPlant(address)
+        try:
+            getPlant(address)
+        except:
+            raise ex
+
 
 print("DONE!")
 

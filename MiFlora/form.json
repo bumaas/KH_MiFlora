@@ -34,28 +34,27 @@
 		{
 			"type": "List",
 			"name": "FormSensorList",
-			"rowCount": 10,
+			"rowCount": 15,
 			"caption": "Sensoren",
 			"delete": true,
 			"columns": [{
 				"label": "UUID",
 				"name": "uuid", 
-				"width": "115px",
+				"width": "180px",
 				"save" : true
 				}, {
 				"label": "Name",
 				"name": "name",
-				"width": "190px",
+				"width": "250px",
 				"edit": {"type":"ValidationTextBox"}
 				}, {
 				"label": "Bild",
 				"name": "mediaID",
-				"width": "50px",
+				"width": "auto",
 				"edit": {"type":"SelectMedia" }
 				}
 			],
-			"values": [
-			]
+			"values": []
 		}, 		
 		{ "name": "UpdateIntervall",    "type": "IntervalBox",  "caption": "Sekunden" },
 		{ "name": "DataLoggingEnabled", "type": "CheckBox",     "caption": "Variablen automatisch loggen (nur aktivieren!)" },
