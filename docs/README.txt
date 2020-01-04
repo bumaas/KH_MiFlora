@@ -40,7 +40,7 @@ apt-get install git
 cd /home/pi
 git clone https://github.com/open-homeautomation/miflora.git
 cd miflora
-wget https://raw.githubusercontent.com/bumaas/KH_MiFlora/master/docs/GetMiFloras.py
+wget -N https://raw.githubusercontent.com/bumaas/KH_MiFlora/master/docs/GetMiFloras.py
 
 - Python und andere Pakete installieren
 apt-get install python3 libglib2.0-dev libbluetooth-dev python3-pip apache2 libboost-python-dev libboost-thread-dev
@@ -65,7 +65,7 @@ hciconfig hci0 reset
 
 crontab -e
 
-Neuer Eintrag am Ende
+Neuer Eintrag am Ende, dabei etwas zeitversetzt (10, 11, 12 etc)
 */10 * * * * python3 /home/pi/miflora/GetMiFloras.py > /var/www/html/plants.log
 
 
