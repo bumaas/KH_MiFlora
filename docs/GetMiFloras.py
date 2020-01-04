@@ -22,21 +22,22 @@ def getPlant(macAdr):
     cond = poller.parameter_value(MI_CONDUCTIVITY)
     battery = poller.battery_level()
 
-    print(timeStr + " Mac="+macAdr+" Name="+name+" Fw="+fw+" Temp={:.2f} Moist={:d} Light={:d} Cond={:d} Bat={:d}".format(temp, moist, light, cond, battery))
-
-    return
+    return timeStr + " Mac="+macAdr+" Name="+name+" Fw="+fw+" Temp={:.2f} Moist={:d} Light={:d} Cond={:d} Bat={:d}".format(temp, moist, light, cond, battery)
 
 
 service = DiscoveryService("hci0")
 devices = service.discover(8)
+output  = []
 
 for address, name in devices.items():
     if name == "Flower care" or name == "Flower mate":
         try:
-            getPlant(address)
+            output.append(getPlant(address))
         except:
             raise ex
 
+for i in output:
+    print(i)
 
 print("DONE!")
 
