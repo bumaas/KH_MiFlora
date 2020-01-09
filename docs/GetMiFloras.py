@@ -36,7 +36,7 @@ for address, name in devices.items():
         except:
             raise ex
 
-if len(output) > 0
+if len(output) > 0:
     for i in output:
         print(i)
 
