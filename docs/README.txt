@@ -55,7 +55,7 @@ pip3 install pygattlib
 
 Testen mit
 
-python3 GetMiFloras.py
+sudo python3 GetMiFloras.py
 
 Bei einem Fehler in Form von
 	RuntimeError: Set scan parameters failed (are you root?)
@@ -66,6 +66,6 @@ hciconfig hci0 reset
 crontab -e
 
 Neuer Eintrag am Ende, dabei etwas zeitversetzt (10, 11, 12 etc)
-*/10 * * * * python3 /home/pi/miflora/GetMiFloras.py > /var/www/html/plants.log
+*/10 * * * * python3 /home/pi/miflora/GetMiFloras.py
 
 

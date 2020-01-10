@@ -22,7 +22,7 @@ def getPlant(macAdr):
     cond = poller.parameter_value(MI_CONDUCTIVITY)
     battery = poller.battery_level()
 
-    return timeStr + " Mac="+macAdr+" Name="+name+" Fw="+fw+" Temp={:.2f} Moist={:d} Light={:d} Cond={:d} Bat={:d}".format(temp, moist, light, cond, battery)
+    return timeStr + " Mac="+macAdr+" Name="+name+" Fw="+fw+" Temp={:.2f} Moist={:d} Light={:d} Cond={:d} Bat={:d}\n".format(temp, moist, light, cond, battery)
 
 
 service = DiscoveryService("hci0")
@@ -36,9 +36,10 @@ for address, name in devices.items():
         except:
             raise ex
 
+
 if len(output) > 0:
-    for i in output:
-        print(i)
+    output.append("DONE!\n")
 
-    print("DONE!")
-
+    f = open("/var/www/html/plants.log", "w", encoding="utf8")
+    f.writelines(output)
+    f.close()
